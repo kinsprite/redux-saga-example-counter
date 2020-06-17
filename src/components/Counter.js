@@ -1,11 +1,12 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 
-const Counter = ({ value, onIncrement, onIncrementAsync, onDecrement, onIncrementIfOdd }) => (
+const Counter = ({ value, onIncrement, onIncrementAsync, onDecrement, onIncrementIfOdd, onIncrementThunk }) => (
   <p>
     Clicked: {value} times <button onClick={onIncrement}>+</button> <button onClick={onDecrement}>-</button>{' '}
     <button onClick={onIncrementIfOdd}>Increment if odd</button>{' '}
     <button onClick={onIncrementAsync}>Increment async</button>
+    <button onClick={onIncrementThunk}>Increment thunk</button>
   </p>
 )
 
@@ -15,6 +16,7 @@ Counter.propTypes = {
   onDecrement: PropTypes.func.isRequired,
   onIncrementAsync: PropTypes.func.isRequired,
   onIncrementIfOdd: PropTypes.func.isRequired,
+  onIncrementThunk: PropTypes.func.isRequired,
 }
 
 export default Counter

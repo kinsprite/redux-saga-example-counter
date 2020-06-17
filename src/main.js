@@ -3,7 +3,7 @@ import 'regenerator-runtime/runtime';
 
 import * as React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 
 import Counter from './components/Counter'
@@ -11,8 +11,22 @@ import reducer from './reducers'
 import rootSaga from './sagas'
 import {logger1, logger2, logger3, thunk } from './middlewares'
 
+const composeEnhancers =
+  process.env.NODE_ENV !== 'production' &&
+  typeof window === 'object' &&
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+      // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+    }) : compose;
+
 const sagaMiddleware = createSagaMiddleware()
-const store = createStore(reducer, applyMiddleware(logger1, logger2, logger3, thunk, sagaMiddleware))
+
+const enhancer = composeEnhancers(
+  applyMiddleware(logger1, logger2, logger3, thunk, sagaMiddleware),
+  // other store enhancers if any
+);
+
+const store = createStore(reducer, enhancer)
 sagaMiddleware.run(rootSaga)
 
 const action = type => {

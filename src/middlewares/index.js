@@ -85,6 +85,8 @@ Reducer counter Object {type: "@@redux/INITx.b.b.s.8.p"}
 logger1: building middleware
 logger2: building middleware
 logger3: building middleware
+thunk: building middleware
+thunk: currying next
 logger3: currying next
 logger2: currying next
 logger1: currying next
@@ -96,9 +98,12 @@ dispatch beginning...
 logger1: will dispatch Object {type: "INCREMENT"}
 logger2: will dispatch Object {type: "INCREMENT"}
 logger3: will dispatch Object {type: "INCREMENT"}
+thunk: will dispatch {type: "INCREMENT"}
 Reducer counter Object {type: "INCREMENT"}
 Reducer INCREMENT
 Render on Subscribing
+
+thunk: state after dispatch 1
 logger3: state after dispatch 1
 logger2: state after dispatch 1
 logger1: state after dispatch 1
